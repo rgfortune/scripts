@@ -19,10 +19,12 @@ if __name__=="__main__":
 
   # RegEx to match for IPs in the log file
   ipRegEx = re.compile(r'\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}')
+
+  # Empty hash to hold IP address count
   ipHash = {}
 
+  # Test to check wheter log was provided as an argument or piped vis STDIN.
   # Iterate through the log, line by line, and keep running count of IPs
-
 
   if len(sys.argv) == 2:
     logfile = open(sys.argv[1])
