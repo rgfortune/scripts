@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Version 0.1
+# Version 0.2
 
 # This script parses an Apache access log file and produces a list of the IPs with the most requests.
 # 
