@@ -19,12 +19,12 @@ if __name__=="__main__":
 
   # RegEx to match for IPs in the log file
   ipRegEx = re.compile(r'\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}')
-
+  ipHash = {}
 
   # Iterate through the log, line by line, and keep running count of IPs
 
 
-  if sys.argv[1]:
+  if len(sys.argv) == 2:
     logfile = open(sys.argv[1])
     for line in logfile.readlines():
       mo = ipRegEx.search(line)
