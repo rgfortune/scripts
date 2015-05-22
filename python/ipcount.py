@@ -16,6 +16,12 @@ import re, sys
 
 
 if __name__=="__main__":
+ 
+  def parselines(lines):
+    for line in lines:
+      mo = ipRegEx.search(line)
+      ipHash.setdefault(mo.group(), 0)
+      ipHash[mo.group()] += 1
 
   # RegEx to match for IPs in the log file
   ipRegEx = re.compile(r'\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}')
@@ -23,20 +29,13 @@ if __name__=="__main__":
   # Empty hash to hold IP address count
   ipHash = {}
 
-  # Test to check wheter log was provided as an argument or piped vis STDIN.
-  # Iterate through the log, line by line, and keep running count of IPs
+  # Test to check if log was provided as an argument or piped via STDIN.
 
   if len(sys.argv) == 2:
     logfile = open(sys.argv[1])
-    for line in logfile.readlines():
-      mo = ipRegEx.search(line)
-      ipHash.setdefault(mo.group(), 0)
-      ipHash[mo.group()] += 1
+    parselines(logfile.readlines())
   else:
-    for line in sys.stdin.readlines():
-      mo = ipRegEx.search(line)
-      ipHash.setdefault(mo.group(), 0)
-      ipHash[mo.group()] += 1
+    parselines(sys.stdin.readlines())
   
   # Sort and print formatted
 
